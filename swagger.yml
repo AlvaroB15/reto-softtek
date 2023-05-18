@@ -1,0 +1,260 @@
+swagger: '2.0'
+info:
+  description: Reto-Softtek
+  version: 1.0.0
+  title: Reto-Softtek
+tags:
+  - name: swapi
+    description: Consultas al api de Swapi
+  - name: people
+    description: Consultas para registro y listado de personas con Dynamo
+schemes:
+  - http
+paths:
+  /swapi/people:
+    get:
+      tags:
+        - swapi
+      summary: lista Personas de Swapi
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              data:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  error:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/definitions/SwappiPeople'
+              status:
+                type: number
+  /swapi/planets:
+    get:
+      tags:
+        - swapi
+      summary: lista planetas de Swapi
+      operationId: listUser
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              data:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  error:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/definitions/SwappiPlanet'
+              status:
+                type: number
+  /person:
+    post:
+      tags:
+        - person
+      summary: Registrar persona en DynamoDB
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Persona creado
+          required: true
+          schema:
+            $ref: '#/definitions/Person'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              data:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  error:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    $ref: '#/definitions/DataPerson'
+              status:
+                type: number
+    get:
+      parameters:
+        - in: query
+          name: id
+          type: string
+          description: Id Person
+      tags:
+        - person
+      summary: Listar persona con un id en DynamoDB
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              data:
+                type: object
+                $ref: '#/definitions/DataPerson'
+              status:
+                type: string
+  /people:
+    get:
+      tags:
+        - people
+      summary: Obtener todas las personas en DynamoDB
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: query
+          type: string
+          required: true
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/DataPerson'
+              status:
+                type: number
+definitions:
+  DataPerson:
+    type: object
+    properties:
+      id:
+        type: string
+      nombre:
+        type: string
+      genero:
+        type: string
+      planetaOrigen:
+        type: string
+      fechaRegistro:
+        type: string
+  Person:
+    type: object
+    properties:
+      nombre:
+        type: string
+      genero:
+        type: string
+      planetaOrigen:
+        type: string
+  SwappiPeople:
+    type: object
+    properties:
+      nombre:
+        type: string
+      altura:
+        type: string
+      peso:
+        type: string
+      colorCabello:
+        type: string
+      tes:
+        type: string
+      colorOjos:
+        type: string
+      anioNacimiento:
+        type: string
+      genero:
+        type: string
+      planetaOrigen:
+        type: string
+      fechaRegistro:
+        type: string
+      fechaEdicion:
+        type: string
+      url:
+        type: string
+      peliculas:
+        type: array
+        items:
+          type: string
+      especies:
+        type: array
+        items:
+          type: string
+      vehiculos:
+        type: array
+        items:
+          type: string
+      navesEstelares:
+        type: array
+        items:
+          type: string
+  SwappiPlanet:
+    type: object
+    properties:
+      nombre:
+        type: string
+      periodoRotacion:
+        type: string
+      periodoOrbital:
+        type: string
+      diametro:
+        type: string
+      clima:
+        type: string
+      gravedad:
+        type: string
+      terreno:
+        type: string
+      superficieAgua:
+        type: string
+      poblacion:
+        type: string
+      fechaRegistro:
+        type: string
+      fechaEdicion:
+        type: string
+      url:
+        type: string
+      residentes:
+        type: array
+        items:
+          type: string
+      peliculas:
+        type: array
+        items:
+          type: string
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
