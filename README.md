@@ -1,12 +1,20 @@
 # PRUEBA TECNICA - ALVARO BEGAZO CARHUAYO
 
-Ruta del swagger, solo se declaro el file en
+Ruta del swagger en version 3               , solo se declaro el file en
 
 ```
 ./swagger.yml
 ```
+  
+La version 3
+https://app.swaggerhub.com/apis-docs/AlvaroB15/reto-softtek-swagger3/1.0.0
+  
+La version 2
+https://app.swaggerhub.com/apis-docs/AlvaroB15/reto-softtek-swagger2/1.0.0
 
 Nota: Si tiene Webstorm, automaticamente te da una vista previa del swagger, de igual manera debe haber un plugin en visual studio code. Para que sea en una vista de un navegador, se tuvo que haber instalado swagger-jsdoc y swagger-ui-express, para poder crear un endpoint para que muestre el swagger.
+
+PD: Se encontro un servicio para poder publicar tu swagger de forma publica y gratis, para este reto
 
 URL de los lambdas.
 
